@@ -2,6 +2,9 @@ package com.zbq.zArray;
 
 import java.util.Arrays;
 
+/**
+ * 数组
+ */
 public class ZArrays {
     public static void main(String[] args) {
         char[] a = new char[10];
