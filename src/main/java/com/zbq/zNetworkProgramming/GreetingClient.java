@@ -5,8 +5,8 @@ import java.net.Socket;
 
 public class GreetingClient {
     public static void main(String[] args) {
-        String serverName = args[0];
-        int port = Integer.parseInt(args[1]);
+        String serverName = "";
+        int port = Integer.parseInt("6606");
         try {
             System.out.println("连接到主机：" + serverName + " ，端口号：" + port);
             Socket client = new Socket(serverName, port);
