@@ -30,4 +30,5 @@ File类只用于表示文件（目录）的信息（名称、大小等），不�
             out.write(byte[] buf); // 将buf字节数组都写入到流
             out.write(byte[] buf, int start, int size); // 字节数组buf从start位置开始写size长度的字节到流
         (5) FileInputStream -----> 具体实现了在文件上读取数据
+        (6) FileOutPutStream -----> 实现了向文件中写出byte数据的方法
 5.对象的序列化与反序列化
