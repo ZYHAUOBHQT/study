@@ -1,9 +1,6 @@
 package com.zbq002_IO.zbq003_1_RandomAccessFile;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * IOUtil
@@ -61,6 +58,13 @@ public class IOUtil {
         }
     }
 
+    /**
+     * 文件拷贝，字节批量读取
+     *
+     * @param srcFile
+     * @param destFile
+     * @throws IOException
+     */
     public static void copyFile(File srcFile, File destFile) throws IOException {
         if (!srcFile.exists()) {
             throw new IllegalArgumentException("文件：" + srcFile + "不存在");
@@ -75,6 +79,56 @@ public class IOUtil {
         while ((b = fileInputStream.read(bytes, 0, bytes.length)) != -1) {
             fileOutputStream.write(bytes, 0, b);
             fileOutputStream.flush(); // 最好加上
+        }
+        fileInputStream.close();
+        fileOutputStream.close();
+    }
+
+    /**
+     * 进行文件地拷贝，利用带缓冲地字节流
+     *
+     * @param srcFile
+     * @param destFile
+     * @throws IOException
+     */
+    public static void copyFileByBuffer(File srcFile, File destFile) throws IOException {
+        if (!srcFile.exists()) {
+            throw new IllegalArgumentException("文件：" + srcFile + "不存在");
+        }
+        if (!srcFile.isFile()) {
+            throw new IllegalArgumentException("文件：" + srcFile + "不是文件");
+        }
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(srcFile));
+        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(destFile));
+        int c;
+        while ((c = bufferedInputStream.read()) != -1) {
+            bufferedOutputStream.write(c);
+            bufferedOutputStream.flush();
+        }
+        bufferedInputStream.close();
+        bufferedOutputStream.close();
+    }
+
+    /**
+     * 单字节，不带缓冲，进行文件拷贝
+     *
+     * @param srcFile
+     * @param destFile
+     * @throws IOException
+     */
+    public static void copyFileByByte(File srcFile, File destFile) throws IOException {
+        if (!srcFile.exists()) {
+            throw new IllegalArgumentException("文件：" + srcFile + "不存在");
+        }
+        if (!srcFile.isFile()) {
+            throw new IllegalArgumentException("文件：" + srcFile + "不是文件");
+        }
+        FileInputStream fileInputStream = new FileInputStream(srcFile);
+        FileOutputStream fileOutputStream = new FileOutputStream(destFile);
+        int c;
+        while ((c = fileInputStream.read()) != -1) {
+            fileOutputStream.write(c);
+            fileOutputStream.flush();
         }
         fileInputStream.close();
         fileOutputStream.close();

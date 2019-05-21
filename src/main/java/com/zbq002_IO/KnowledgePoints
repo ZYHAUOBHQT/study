@@ -31,4 +31,13 @@ File类只用于表示文件（目录）的信息（名称、大小等），不�
             out.write(byte[] buf, int start, int size); // 字节数组buf从start位置开始写size长度的字节到流
         (5) FileInputStream -----> 具体实现了在文件上读取数据
         (6) FileOutPutStream -----> 实现了向文件中写出byte数据的方法
+        (7) DataInputStream\DataOutputStream -----> 对"流"功能的扩展，可以更加方便地读取int、long、字符等数据类型。
+            DataOutputStream
+                writeInt() writeDouble() writeUTF()
+        (8) BufferedInputStream\BufferedOutputStream
+            这两个流类为IO提供了带缓冲区的操作，一般打开文件进行写入或读取操作时，都会加上缓冲，这种流模式，提高了IO的性能
+            从应用程序中，把数据放入文件，相当于将一缸水，倒入到另一个缸中：
+                FileOutputStream -----> write()方法，相当于将水"一滴一滴"地转移过去
+                DataOutputStream -----> writeXxx()方法，会方便一些，相当于将水"一瓢一瓢"地转移过去
+                BufferedOutputStream -----> write()方法，更方便，相当于将水先"一瓢一瓢"地放入桶中，再从桶中导入另一个缸
 5.对象的序列化与反序列化
