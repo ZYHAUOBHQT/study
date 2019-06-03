@@ -40,4 +40,18 @@ File类只用于表示文件（目录）的信息（名称、大小等），不�
                 FileOutputStream -----> write()方法，相当于将水"一滴一滴"地转移过去
                 DataOutputStream -----> writeXxx()方法，会方便一些，相当于将水"一瓢一瓢"地转移过去
                 BufferedOutputStream -----> write()方法，更方便，相当于将水先"一瓢一瓢"地放入桶中，再从桶中导入另一个缸
+    二.字符流
+        (1) 编码问题
+        (2) 认识文本和文本文件
+            java的文本（char）是16位无符号整数，是字符的unicode编码（双字节编码）
+            文件是byte byte byte ...的数据序列
+            文本文件是文本（char）序列按照某种编码方案（utf-8，utf-16be，gbk）序列化为byte的存储结果
+        (3) 字符流（Reader Writer） -----> 操作的是文本文件
+            字符的处理，一次处理一个字符
+            字符的底层仍然是基本的字节序列
+            字符流的基本实现
+                InputStreamReader 完成byte流解析为char流，按照编码解析
+                OutputStreamWriter 完成char流到byte流，按照编码处理
+
+                FileReader/FileWriter
 5.对象的序列化与反序列化
