@@ -25,6 +25,9 @@ public class CaiPiaoJiXuanQi {
                 }
             }
 
+            // 前六位排序
+            numbers = sort(numbers);
+
             String[] changeNumber = numbers.toString().split(", ");
 
             String number = "[";
@@ -62,6 +65,33 @@ public class CaiPiaoJiXuanQi {
         fiveNumbers.parallelStream().forEach(numbers -> {
             System.out.println(numbers + "\t");
         });
+    }
+
+    private static List<Integer> sort(List<Integer> numberList) {
+        List<Integer> numbers = new ArrayList<>();
+
+        int lastNumber = numberList.get(numberList.size() - 1);
+
+        numberList.remove(numberList.size() - 1);
+
+        numbers = numberList;
+
+        int temp = 0;
+        int size = numbers.size();
+        for (int i = 0; i < size - 1; i++) {
+            for (int j = 0; j < size - 1 - i; j++) {
+                if (numbers.get(j) > numbers.get(j + 1))  //交换两数位置
+                {
+                    temp = numbers.get(j);
+                    numbers.set(j, numbers.get(j + 1));
+                    numbers.set(j + 1, temp);
+                }
+            }
+        }
+
+        numbers.add(lastNumber);
+
+        return numbers;
     }
 
     private static int getNormalNumber(List<Integer> numbers) {

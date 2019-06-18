@@ -54,4 +54,7 @@ File类只用于表示文件（目录）的信息（名称、大小等），不�
                 OutputStreamWriter 完成char流到byte流，按照编码处理
 
                 FileReader/FileWriter
+            字符流的过滤器
+                BufferedReader -----> readLine 一次读一行
+                BufferedWriter/PrintWriter -----> 一次写一行
 5.对象的序列化与反序列化
